@@ -37,9 +37,53 @@
 /* $Id$ */
 
 function Account() {
-	this.parent = null;
+	this.id = -1;
 	this.type = null;
-	this.name = null;
+	this.name = "New Account";
+	this.description = "";
+	this.parent = null;
 	this.entries = new Array();
 	this.children = new Array();
+}
+
+Account.prototype.appendChild = function(newChild) {
+	this.children.push(newChild);
+}
+
+Account.prototype.createChild = function() {
+	var newChild = new Account;
+	// this is severely flawed
+	newChild.id = this.id + "." + this.children.length;
+	newChild.type = this.type;
+	newChild.parent = this;
+	return newChild;
+}
+
+Account.prototype.removeChild = function(oldChild) {
+	for (var i = 0; i < this.children.length; i++) {
+		if (this.children[i] == oldChild) {
+			this.children.splice(i, 1);
+			return;
+		}
+	}
+
+	throw new Error("Unknown child Account.");
+}
+
+Account.prototype.hasChildAccounts = function() {
+	if (this.children.length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+Account.prototype.toString = function() {
+	return    "{"
+		+ "id:\"" + this.id + "\","
+		+ "type:\"" + this.type + "\","
+		+ "name:\"" + this.name + "\","
+		+ "description:\"" + this.description + "\","
+		+ "parent:" + (this.parent ? "\"" + this.parent.id + "\"": null)
+		+ "}";
 }

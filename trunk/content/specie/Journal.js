@@ -57,7 +57,7 @@ Journal.prototype.deleteTransaction = function(aTransaction) {
 		}
 	}
 
-	throw new Error("Transaction isn't known.");
+	throw new Error("Unknown transaction.");
 }
 
 Journal.prototype.save = function() {
