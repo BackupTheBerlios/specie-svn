@@ -38,54 +38,45 @@
 
 <!-- $Id$ -->
 
-<?xml-stylesheet href="chrome://specie/skin/specie.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://specie/skin/" type="text/css"?>
 
 <!DOCTYPE window SYSTEM "chrome://specie/locale/specie.dtd">
 
-<window title="&specie.title;"
-  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<window id="window_specie" title="&window.specie.title;" onload="" onunload=""
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  persist="screenX screenY width height">
 
-  <script type="application/x-javascript" src="chrome://specie/content/specie.js"/>
+  <script type="application/x-javascript" src="specie.js"/>
+
+  <commandset id="commands">
+    <command id="cmd_quit" oncommand="window.close();"/>
+    <command id="cmd_chart" oncommand="doDisplayPanel('chartOfAccounts');"/>
+    <command id="cmd_journal" oncommand="doDisplayPanel('journal');"/>
+  </commandset>
+
+  <keyset>
+    <key id="key_quit" key="&cmd.quit.key;" modifiers="accel" command="cmd_quit"/>
+  </keyset>
 
   <toolbox>
-    <menubar id="menubar">
-      <menu label="&menubar.file;">
-        <menupopup>
-          <menuitem label="&menubar.file.new;" oncommand="menuFileNew();"/>
-          <menuitem label="&menubar.file.open;" oncommand="menuFileOpen();"/>
-          <menuitem label="&menubar.file.save;" oncommand="menuFileSave();"/>
-          <menuseparator/>
-          <menuitem label="&menubar.file.exit;" oncommand="menuFileExit();"/>
-        </menupopup>
-      </menu>
-      <menu label="&menubar.help;">
-        <menupopup>
-          <menuitem label="&menubar.help.about;" oncommand="menuHelpAbout();"/>
+    <menubar>
+      <menu id="menu_file" label="&menu.file.label;" accesskey="&menu.file.accesskey;">
+        <menupopup id="menupopup_file">
+          <menuitem id="menuitem_quit" label="&menuitem.quit.label;"
+            key="key_quit" accesskey="&menuitem.quit.accesskey;"
+            command="cmd_quit"/>
         </menupopup>
       </menu>
     </menubar>
   </toolbox>
-  <hbox flex="1">
-    <vbox id="prefsCategories" class="listBox buttonBox">
-      <button orient="vertical" class="buttonBoxButton" type="radio" group="navigation" label="Placeholder 1"/>
-      <button orient="vertical" class="buttonBoxButton" type="radio" group="navigation" label="Placeholder 2"/>
+  <hbox id="hbox_content" flex="1">
+    <vbox id="vbox_navigation">
+      <button id="button_chartOfAccounts" orient="vertical" type="radio" group="navigation" label="&button.chartOfAccounts.label;" command="cmd_chart"/>
+      <button id="button_journal" orient="vertical" type="radio" group="navigation" label="&button.journal.label;" command="cmd_journal"/>
     </vbox>
     <vbox flex="1">
-      <iframe id="content-frame" flex="1"/>
-<!--
-      <tree id="accounts-summary" flex="1">
-        <treecols>
-          <treecol id="account" label="&accounts-summary.account;" flex="2" primary="true"/>
-          <treecol id="description" label="&accounts-summary.description;" flex="3"/>
-          <treecol id="balance" label="&accounts-summary.balance;" flex="1"/>
-        </treecols>
-        <treechildren>
-        </treechildren>
-      </tree>
--->
+      <iframe id="iframe_content" flex="1"/>
     </vbox>
   </hbox>
-  <statusbar>
-    <statusbarpanel id="status-text" label="Testing"/>
-  </statusbar>
 </window>

@@ -36,11 +36,7 @@
 
 /* $Id$ */
 
-function menuFileNew() {
-}
-
-function menuFileOpen() {
-}
-
-function menuFileExit() {
+function doDisplayPanel(which) {
+  var contentFrame = document.getElementById("iframe_content");
+  contentFrame.setAttribute("src", which + "Panel.xul");
 }

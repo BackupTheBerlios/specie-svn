@@ -36,6 +36,31 @@
 
 /* $Id$ */
 
-/* #accounts-summary {
-	margin-right: 0;
-} */
+#hbox_content {
+  padding: 10px;
+}
+
+#hbox_content vbox:first-child {
+  margin-right: 10px;
+}
+
+#vbox_navigation {
+  background-color: white;
+  border: 1px inset;
+}
+
+#vbox_navigation button {
+  margin-top: 5px;
+}
+
+#label_title {
+  background-color: RGB(0, 0, 95);
+  border: 1px inset;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 5px;
+  padding-left: 10px;
+}
