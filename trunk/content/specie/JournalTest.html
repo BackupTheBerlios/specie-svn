@@ -39,6 +39,7 @@
 <html>
 	<head>
 		<title>JournalTest.html</title>
+		<script type="text/javascript" src="Account.js"></script>
 		<script type="text/javascript" src="Journal.js"></script>
 		<script type="text/javascript" src="Transaction.js"></script>
 		<script type="text/javascript" src="Entry.js"></script>
@@ -46,31 +47,30 @@
 		function body_onload() {
 			var aJournal = new Journal();
 
+			var anAccount = new Account();
+			anAccount.id = 0;
+			anAccount.type = "A";
+			anAccount.name = "Asset";
+
 			var aTransaction = new Transaction();
 			aTransaction.date = new Date();
 			aTransaction.description = "Test Transaction";
 
-			var aEntry = new Entry();
-			aEntry.type = "C";
-			aEntry.value = 100;
+			var anEntry = aTransaction.createEntry();
+			anEntry.type = "C";
+			anEntry.value = 100;
+			anEntry.account = anAccount;
+			aTransaction.appendEntry(anEntry);
 
-			aTransaction.addEntry(aEntry);
-
-			aEntry = new Entry();
-			aEntry.type = "C";
-			aEntry.value = 50;
-
-			aTransaction.addEntry(aEntry);
-
-			aEntry = new Entry();
-			aEntry.type = "D";
-			aEntry.value = 150;
-
-			aTransaction.addEntry(aEntry);
+			anEntry = aTransaction.createEntry();
+			anEntry.type = "D";
+			anEntry.value = 100;
+			anEntry.account = anAccount;
+			aTransaction.appendEntry(anEntry);
 
 			var output_div = document.getElementById("output");
-			output_div.innerHTML += "aTransaction.date: " + aTransaction.date + "<br/>";
 			output_div.innerHTML += "aTransaction.isBalanced(): " + aTransaction.isBalanced() + "<br/>";
+			output_div.innerHTML += "aTransaction.toString(): <br/>" + aTransaction.toString() + "<br/>";
 		}
 		</script>
 	</head>

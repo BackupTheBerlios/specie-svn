@@ -42,3 +42,12 @@ function Entry() {
 	this.account = null;
 	this.value = null;
 }
+
+Entry.prototype.toString = function() {
+	return    "{"
+		+ "type:\"" + this.type + "\","
+		+ "transaction:\"" + this.transaction.id + "\","
+		+ "account:\"" + this.account.id + "\","
+		+ "value:\"" + this.value + "\""
+		+ "}";
+}

@@ -77,7 +77,6 @@
 				var outputString = aChartOfAccounts.toString();
 				outputString = outputString.replace(/{/g, "\n\t{");
 				outputString = outputString.replace(/]$/, "\n]");
-				outputString.replace(/\n/g, "<br/>");
 
 				var output_div = document.getElementById("output");
 				output_div.innerHTML += "aChartOfAccounts.toString(): <br/>" + outputString.replace(/\n/g, "<br/>") + "<br/>";

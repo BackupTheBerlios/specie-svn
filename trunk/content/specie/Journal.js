@@ -46,7 +46,7 @@ Journal.prototype.addTransaction = function(aTransaction) {
 		return;
 	}
 
-	throw new Error("Transaction isn't in balance.");
+	throw new Error("Transaction is not in balance.");
 }
 
 Journal.prototype.deleteTransaction = function(aTransaction) {

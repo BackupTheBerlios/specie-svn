@@ -41,33 +41,30 @@ function ChartOfAccounts() {
 	this.filename = null;
 
 	// Used by private methods
-	var self = this;
+//	var self = this;
 
 	// Private member
-	function flattenAccount(aAccount) {
-dump("aAccount.name: " + aAccount.name);
+	function flattenAccount(anAccount) {
 		var returnValue = new Array();
 
-dump("aAccount.hasChildAccounts(): " + aAccount.hasChildAccounts());
-		returnValue.push(aAccount);
-		if (aAccount.hasChildAccounts()) {
-			for (var i = 0; i < aAccount.children.length; i++) {
-				returnValue = returnValue.concat(flattenAccount(aAccount.children[i]));
+		returnValue.push(anAccount);
+		if (anAccount.hasChildAccounts()) {
+			for (var i = 0; i < anAccount.children.length; i++) {
+				returnValue = returnValue.concat(flattenAccount(anAccount.children[i]));
 			}
 		}
 
-dump("returnValue.length: " + returnValue.length);
 		return returnValue;
 	}
 
 	// Privelaged method
 	this.toString = function() {
 		var returnString = "";
+
 		var allAccounts = new Array();
 		for (var i = 0; i < this.accounts.length; i++) {
 			allAccounts = allAccounts.concat(flattenAccount(this.accounts[i]));
 		}
-dump("allAccounts.length: " + allAccounts.length);
 
 		returnString += "[";
 		for (var i = 0; i < allAccounts.length; i++) {
@@ -82,39 +79,46 @@ dump("allAccounts.length: " + allAccounts.length);
 	}
 
 	// Initialize common accounts that all Charts share
-	var aAccount = new Account;
-	aAccount.id = 0;
-	aAccount.type = "A";
-	aAccount.name = "Asset";
-	this.accounts.push(aAccount);
+	var anAccount = new Account;
+	anAccount.id = 0;
+	anAccount.type = "A";
+	anAccount.name = "Asset";
+	this.accounts.push(anAccount);
 
-	aAccount = new Account;
-	aAccount.id = 1;
-	aAccount.type = "L";
-	aAccount.name = "Liability";
-	this.accounts.push(aAccount);
+	anAccount = new Account;
+	anAccount.id = 1;
+	anAccount.type = "L";
+	anAccount.name = "Liability";
+	this.accounts.push(anAccount);
 
-	aAccount = new Account;
-	aAccount.id = 2;
-	aAccount.type = "P";
-	aAccount.name = "Equity";
-	this.accounts.push(aAccount);
+	anAccount = new Account;
+	anAccount.id = 2;
+	anAccount.type = "P";
+	anAccount.name = "Equity";
+	this.accounts.push(anAccount);
 
-	aAccount = new Account;
-	aAccount.id = 3;
-	aAccount.type = "I";
-	aAccount.name = "Income";
-	this.accounts.push(aAccount);
+	anAccount = new Account;
+	anAccount.id = 3;
+	anAccount.type = "I";
+	anAccount.name = "Income";
+	this.accounts.push(anAccount);
 
-	aAccount = new Account();
-	aAccount.id = "4";
-	aAccount.type = "E";
-	aAccount.name = "Expense";
-	this.accounts.push(aAccount);
+	anAccount = new Account();
+	anAccount.id = "4";
+	anAccount.type = "E";
+	anAccount.name = "Expense";
+	this.accounts.push(anAccount);
 }
 
 ChartOfAccounts.prototype.load = function(filename) {
 }
 
 ChartOfAccounts.prototype.save = function(filename) {
+	var outputString = this.toString();
+
+	// Just a little clean-up
+	outputString = outputString.replace(/{/g, "\n\t{");
+	outputString = outputString.replace(/]$/, "\n]");
+
+	// This is where it would be written to disk
 }

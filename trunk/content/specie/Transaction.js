@@ -37,25 +37,40 @@
 /* $Id$ */
 
 function Transaction() {
-	this.entries = new Array();
-	this.date = null;
+	this.id = -1;
 	this.description = null;
+	this.date = null;
+	this.entries = new Array();
 }
 
-Transaction.prototype.addEntry = function(aEntry) {
-	aEntry.transaction = this;
-	this.entries.push(aEntry);
+Transaction.prototype.appendEntry = function(newEntry) {
+	if (newEntry.transaction != this) {
+		throw new Error("Unexpected transaction association.");
+	}
+
+	if (newEntry.account == null) {
+		throw new Error("An Entry must be associated with an Account.");
+	}
+
+	this.entries.push(newEntry);
 }
 
-Transaction.prototype.deleteEntry = function(aEntry) {
+Transaction.prototype.createEntry = function() {
+	var newEntry = new Entry();
+	newEntry.transaction = this;
+
+	return newEntry;
+}
+
+Transaction.prototype.removeEntry = function(oldEntry) {
 	for (var i = 0; i < this.entries.length; i++) {
-		if (this.entries[i] == aEntry) {
-			this.transactions.splice(i, 1);
+		if (this.entries[i] == oldEntry) {
+			this.entries.splice(i, 1);
 			return;
 		}
 	}
 
-	throw new Error("Entry isn't known.");
+	throw new Error("Unknown entry.");
 }
 
 Transaction.prototype.isBalanced = function() {
@@ -75,4 +90,22 @@ Transaction.prototype.isBalanced = function() {
 	} else {
 		return false;
 	}
+}
+
+Transaction.prototype.toString = function() {
+	var returnString = "";
+
+	returnString += "{"
+		+ "description:\"" + this.description.replace(/"/, "\\\"") + "\","
+		+ "date:\"" + this.date.toString() + "\",";
+
+	returnString += "entries:[";
+	for (var i = 0; i < this.entries.length; i++) {
+		returnString += this.entries[i].toString();
+	}
+	returnString += "]";
+
+	returnString += "}";
+
+	return returnString;
 }

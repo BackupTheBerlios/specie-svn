@@ -47,6 +47,10 @@ function Account() {
 }
 
 Account.prototype.appendChild = function(newChild) {
+	if (newChild.parent != this) {
+		throw new Error("Unexpected parent association.");
+	}
+
 	this.children.push(newChild);
 }
 
@@ -56,6 +60,7 @@ Account.prototype.createChild = function() {
 	newChild.id = this.id + "." + this.children.length;
 	newChild.type = this.type;
 	newChild.parent = this;
+
 	return newChild;
 }
 
@@ -82,8 +87,8 @@ Account.prototype.toString = function() {
 	return    "{"
 		+ "id:\"" + this.id + "\","
 		+ "type:\"" + this.type + "\","
-		+ "name:\"" + this.name + "\","
-		+ "description:\"" + this.description + "\","
+		+ "name:\"" + this.name.replace(/"/, "\\\"") + "\","
+		+ "description:\"" + this.description.replace(/"/, "\\\"") + "\","
 		+ "parent:" + (this.parent ? "\"" + this.parent.id + "\"": null)
 		+ "}";
 }
