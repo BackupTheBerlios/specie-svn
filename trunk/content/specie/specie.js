@@ -41,6 +41,10 @@ function doDisplayPanel(which) {
   contentFrame.setAttribute("src", which + "Panel.xul");
 }
 
+function doNew() {
+  
+}
+
 function doFileOpen(options) {
   var strbundle = document.getElementById("stringbundle_specie");
   var filename = "";

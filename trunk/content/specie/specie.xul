@@ -54,6 +54,7 @@
   <script type="application/x-javascript" src="specie.js"/>
 
   <commandset id="commands">
+    <command id="cmd_new" oncommand="doFileNew();"/>
     <command id="cmd_open" oncommand="doFileOpen();"/>
     <command id="cmd_quit" oncommand="window.close();"/>
     <command id="cmd_chart" oncommand="doDisplayPanel('chartOfAccounts');"/>
@@ -61,6 +62,7 @@
   </commandset>
 
   <keyset>
+    <key id="key_new" key="&cmd.new.key;" modifiers="accel" command="cmd_new"/>
     <key id="key_open" key="&cmd.open.key;" modifiers="accel" command="cmd_open"/>
     <key id="key_quit" key="&cmd.quit.key;" modifiers="accel" command="cmd_quit"/>
   </keyset>
@@ -69,6 +71,9 @@
     <menubar>
       <menu id="menu_file" label="&menu.file.label;" accesskey="&menu.file.accesskey;">
         <menupopup id="menupopup_file">
+          <menuitem id="menuitem_new" label="&menuitem.new.label;"
+            key="key_new" accesskey="&menuitem.new.accesskey;"
+            command="cmd_new"/>
           <menuitem id="menuitem_open" label="&menuitem.open.label;"
             key="key_open" accesskey="&menuitem.open.accesskey;"
             command="cmd_open"/>

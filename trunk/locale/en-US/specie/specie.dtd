@@ -34,14 +34,19 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
+<!-- $Id$ -->
+
 <!ENTITY window.specie.title "Specie">
 
+<!ENTITY cmd.new.key "N">
 <!ENTITY cmd.quit.key "Q">
 <!ENTITY cmd.open.key "O">
 
 <!ENTITY menu.file.label "File">
 <!ENTITY menu.file.accesskey "f">
 
+<!ENTITY menuitem.new.label "New">
+<!ENTITY menuitem.new.accesskey "n">
 <!ENTITY menuitem.open.label "Open">
 <!ENTITY menuitem.open.accesskey "o">
 <!ENTITY menuitem.quit.label "Quit">
