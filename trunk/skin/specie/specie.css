@@ -46,7 +46,7 @@
 
 #vbox_navigation {
   background-color: white;
-  border: 1px inset;
+  border: thin inset;
 }
 
 #vbox_navigation button {
@@ -55,7 +55,7 @@
 
 #label_title {
   background-color: RGB(0, 0, 95);
-  border: 1px inset;
+  border: thin inset;
   color: white;
   font-size: large;
   font-weight: bold;
@@ -63,4 +63,9 @@
   margin-bottom: 10px;
   padding: 5px;
   padding-left: 10px;
+}
+
+/* should probably be moved to chartOfAccountsPanel.css */
+#tree_summary {
+  margin: 0;
 }

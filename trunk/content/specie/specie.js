@@ -40,3 +40,34 @@ function doDisplayPanel(which) {
   var contentFrame = document.getElementById("iframe_content");
   contentFrame.setAttribute("src", which + "Panel.xul");
 }
+
+function doFileOpen(options) {
+  var strbundle = document.getElementById("stringbundle_specie");
+  var filename = "";
+
+  if (options && options.filename) {
+    filename = options.filename;
+  } else {
+    var nsIFilePicker = Components.interfaces.nsIFilePicker;
+    var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+
+    fp.init(window, strbundle.getString("filepicker.open.title"), nsIFilePicker.modeOpen);
+    fp.appendFilter("Specie Files", "*.spc");
+
+    var res = fp.show();
+    if (res == nsIFilePicker.returnOK) {
+      filename = fp.file;
+    } else {
+      return;
+    }
+  }
+
+  var nsILocalFile = Components.interfaces.nsILocalFile;
+  var file = Components.classes["@mozilla.org/file/local;1"].createInstance(nsILocalFile);
+
+  file.initWithPath(filename);
+  if (!file.exists()) {
+    alert("filename: " + filename);
+    alert(strbundle.getFormattedString("file.exists.not", [filename]));
+  }
+}

@@ -47,15 +47,21 @@
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   persist="screenX screenY width height">
 
+  <stringbundleset>
+    <stringbundle id="stringbundle_specie" src="chrome://specie/locale/specie.properties"/>
+  </stringbundleset>
+
   <script type="application/x-javascript" src="specie.js"/>
 
   <commandset id="commands">
+    <command id="cmd_open" oncommand="doFileOpen();"/>
     <command id="cmd_quit" oncommand="window.close();"/>
     <command id="cmd_chart" oncommand="doDisplayPanel('chartOfAccounts');"/>
     <command id="cmd_journal" oncommand="doDisplayPanel('journal');"/>
   </commandset>
 
   <keyset>
+    <key id="key_open" key="&cmd.open.key;" modifiers="accel" command="cmd_open"/>
     <key id="key_quit" key="&cmd.quit.key;" modifiers="accel" command="cmd_quit"/>
   </keyset>
 
@@ -63,6 +69,10 @@
     <menubar>
       <menu id="menu_file" label="&menu.file.label;" accesskey="&menu.file.accesskey;">
         <menupopup id="menupopup_file">
+          <menuitem id="menuitem_open" label="&menuitem.open.label;"
+            key="key_open" accesskey="&menuitem.open.accesskey;"
+            command="cmd_open"/>
+          <menuseparator/>
           <menuitem id="menuitem_quit" label="&menuitem.quit.label;"
             key="key_quit" accesskey="&menuitem.quit.accesskey;"
             command="cmd_quit"/>

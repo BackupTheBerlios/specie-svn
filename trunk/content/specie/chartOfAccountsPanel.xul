@@ -49,6 +49,13 @@
   <!-- script type="application/x-javascript" src="chartOfAccounts.js"/ -->
 
   <label id="label_title" value="&window.chartOfAccounts.title;"/>
-  <hbox flex="1">
-  </hbox>
+  <tree id="tree_summary" flex="1">
+    <treecols>
+      <treecol id="treecol_account" label="&treecol.account.label;" flex="2" primary="true"/>
+      <treecol id="treecol_description" label="&treecol.description.label;" flex="3"/>
+      <treecol id="treecol_balance" label="&treecol.balance.label;" flex="1"/>
+    </treecols>
+    <treechildren id="treechildren_summary">
+    </treechildren>
+  </tree>
 </window>

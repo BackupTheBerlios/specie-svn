@@ -37,10 +37,13 @@
 <!ENTITY window.specie.title "Specie">
 
 <!ENTITY cmd.quit.key "Q">
+<!ENTITY cmd.open.key "O">
 
 <!ENTITY menu.file.label "File">
 <!ENTITY menu.file.accesskey "f">
 
+<!ENTITY menuitem.open.label "Open">
+<!ENTITY menuitem.open.accesskey "o">
 <!ENTITY menuitem.quit.label "Quit">
 <!ENTITY menuitem.quit.accesskey "q">
 
@@ -49,3 +52,7 @@
 
 <!ENTITY window.chartOfAccounts.title "Chart Of Accounts">
 <!ENTITY window.journal.title "Journal">
+
+<!ENTITY treecol.account.label "Account">
+<!ENTITY treecol.description.label "Description">
+<!ENTITY treecol.balance.label "Balance">
