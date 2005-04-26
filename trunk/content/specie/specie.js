@@ -42,7 +42,8 @@ function doDisplayPanel(which) {
 }
 
 function doNew() {
-  
+  var fileLoaded = document.getElementById("fileLoaded");
+  fileLoaded.removeAttribute("disabled");
 }
 
 function doFileOpen(options) {
@@ -74,4 +75,7 @@ function doFileOpen(options) {
     alert("filename: " + filename);
     alert(strbundle.getFormattedString("file.exists.not", [filename]));
   }
+
+  var fileLoaded = document.getElementById("fileLoaded");
+  fileLoaded.removeAttribute("disabled");
 }

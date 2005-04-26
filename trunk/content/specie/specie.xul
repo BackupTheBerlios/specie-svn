@@ -41,7 +41,10 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://specie/skin/" type="text/css"?>
 
-<!DOCTYPE window SYSTEM "chrome://specie/locale/specie.dtd">
+<!DOCTYPE window [
+  <!ENTITY % specie.dtd SYSTEM "chrome://specie/locale/specie.dtd">
+  %specie.dtd;
+]>
 
 <window id="window_specie" title="&window.specie.title;" onload="" onunload=""
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -54,7 +57,7 @@
   <script type="application/x-javascript" src="specie.js"/>
 
   <commandset id="commands">
-    <command id="cmd_new" oncommand="doFileNew();"/>
+    <command id="cmd_new" oncommand="doNew();"/>
     <command id="cmd_open" oncommand="doFileOpen();"/>
     <command id="cmd_quit" oncommand="window.close();"/>
     <command id="cmd_chart" oncommand="doDisplayPanel('chartOfAccounts');"/>
@@ -66,6 +69,10 @@
     <key id="key_open" key="&cmd.open.key;" modifiers="accel" command="cmd_open"/>
     <key id="key_quit" key="&cmd.quit.key;" modifiers="accel" command="cmd_quit"/>
   </keyset>
+
+  <broadcasterset>
+    <broadcaster id="fileLoaded" disabled="true"/>
+  </broadcasterset>
 
   <toolbox>
     <menubar>
@@ -87,8 +94,8 @@
   </toolbox>
   <hbox id="hbox_content" flex="1">
     <vbox id="vbox_navigation">
-      <button id="button_chartOfAccounts" orient="vertical" type="radio" group="navigation" label="&button.chartOfAccounts.label;" command="cmd_chart"/>
-      <button id="button_journal" orient="vertical" type="radio" group="navigation" label="&button.journal.label;" command="cmd_journal"/>
+      <button id="button_chartOfAccounts" orient="vertical" type="radio" group="navigation" label="&button.chartOfAccounts.label;" command="cmd_chart" observes="fileLoaded"/>
+      <button id="button_journal" orient="vertical" type="radio" group="navigation" label="&button.journal.label;" command="cmd_journal" observes="fileLoaded"/>
     </vbox>
     <vbox flex="1">
       <iframe id="iframe_content" flex="1"/>
